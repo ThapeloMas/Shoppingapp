@@ -1,19 +1,31 @@
-
 import React from "react";
+import "./ItemList.css";
 
 const ItemList = ({ items, onEditItem, onDeleteItem }) => {
   return (
-    <ul>
+    <div className="item-list">
       {items.map((item) => (
-        <li key={item.id}>
-          {item.name} - Quantity: {item.quantity}
-          {item.notes && <span> - Notes: {item.notes}</span>}
-          {item.category && <span> - Category: {item.category}</span>}
-          <button onClick={() => onEditItem(item)}>Edit</button>
-          <button onClick={() => onDeleteItem(item.id)}>Delete</button>
-        </li>
+        <div key={item.id} className="card">
+          <div className="blob"></div>
+          <div className="bg"></div>
+          <div className="content">
+            <h2>{item.name}</h2>
+            <p>Quantity: {item.quantity}</p>
+            {item.notes && <p>Notes: {item.notes}</p>}
+            {item.category && <p>Category: {item.category}</p>}
+            <button className="shadow__btn" onClick={() => onEditItem(item)}>
+              Edit
+            </button>
+            <button
+              className="shadow__btn"
+              onClick={() => onDeleteItem(item.id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

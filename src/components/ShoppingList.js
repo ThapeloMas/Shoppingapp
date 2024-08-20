@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem, editItem, deleteItem } from "../actions/ShoppingListActions";
 import ItemList from "./ItemList";
 import ItemForm from "./ItemForm";
 import SearchBar from "./SearchBar";
+import "./Shoppinglist.css"
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
@@ -16,6 +16,9 @@ const ShoppingList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [filterCategory, setFilterCategory] = useState("");
+
+  console.log("Active List ID:", activeListId);
+  console.log("Active List:", activeList);
 
   if (!activeList) {
     return <div>Please select or create a shopping list.</div>;
@@ -50,14 +53,25 @@ const ShoppingList = () => {
           onSubmit={editingItem ? handleEditItem : handleAddItem}
           initialItem={editingItem || {}}
         />
+        <br></br>
         <SearchBar onSearch={setSearchTerm} />
-        <select onChange={(e) => setSortBy(e.target.value)}>
+        <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
           <option value="name">Sort by Name</option>
           <option value="category">Sort by Category</option>
         </select>
-        <select onChange={(e) => setFilterCategory(e.target.value)}>
+        <select
+          onChange={(e) => setFilterCategory(e.target.value)}
+          value={filterCategory}
+        >
           <option value="">All Categories</option>
-          {/* Add options for each unique category */}
+          {/* Dynamically add options for each unique category */}
+          {[...new Set(activeList.items.map((item) => item.category))].map(
+            (category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            )
+          )}
         </select>
         <ItemList
           items={filteredAndSortedItems}

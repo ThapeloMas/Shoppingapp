@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./ListManager.css"
 import {
   fetchLists,
   addList,
@@ -9,6 +11,7 @@ import {
 
 const ListManager = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const lists = useSelector((state) => state.shoppingList.lists);
   const activeListId = useSelector((state) => state.shoppingList.activeListId);
   const [newListName, setNewListName] = useState("");
@@ -32,9 +35,19 @@ const ListManager = () => {
     dispatch(setActiveList(listId));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <div className="container">
-      <h3>Your Lists</h3>
+      <div className="list-manager-header">
+        <h3>Your Lists</h3>
+        <button onClick={handleLogout} className="shadow__btn">
+          Logout
+        </button>
+      </div>
       {lists.length > 0 ? (
         <ul>
           {lists.map((list) => (
@@ -42,7 +55,8 @@ const ListManager = () => {
               <span onClick={() => handleSelectList(list.id)}>
                 {list.name} {list.id === activeListId && "(active)"}
               </span>
-              <button onClick={() => handleDeleteList(list.id)}>Delete</button>
+              <button  className="shadow__btn"  onClick={() => handleDeleteList(list.id)}>Delete</button>
+              
             </li>
           ))}
         </ul>
@@ -56,7 +70,9 @@ const ListManager = () => {
           placeholder="New list name"
           required
         />
-        <button type="submit">Add List</button>
+        <button className="shadow__btn" type="submit">
+          Add List
+        </button>
       </form>
     </div>
   );

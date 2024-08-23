@@ -19,7 +19,39 @@
       "id": "4817",
       "email": "tp@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "2323",
+      "email": "1@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "4588",
+      "email": "tp@gmail.com",
+      "password": "1234"
     }
   ],
-  "lists": []
+  "lists": [
+    {
+      "id": "1cee",
+      "name": "mid april",
+      "items": [
+        {
+          "name": "BEEF",
+          "quantity": "1",
+          "notes": "10 kg",
+          "category": "meat",
+          "id": 1724406327258
+        },
+        {
+          "name": "sweets",
+          "quantity": "4",
+          "notes": "2kg",
+          "category": "sweets",
+          "id": 1724406350234
+        }
+      ],
+      "userId": "2323"
+    }
+  ]
 }

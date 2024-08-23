@@ -1,3 +1,4 @@
+
 import axios from "axios";
 
 export const FETCH_LISTS = "FETCH_LISTS";
@@ -7,12 +8,17 @@ export const DELETE_LIST = "DELETE_LIST";
 export const SET_ACTIVE_LIST = "SET_ACTIVE_LIST";
 
 export const fetchLists = () => async (dispatch) => {
-  const response = await axios.get("http://localhost:3001/lists");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const response = await axios.get(`http://localhost:3001/lists?userId=${user.id}`);
   dispatch({ type: FETCH_LISTS, payload: response.data });
 };
 
 export const addList = (list) => async (dispatch) => {
-  const response = await axios.post("http://localhost:3001/lists", list);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const response = await axios.post("http://localhost:3001/lists", {
+    ...list,
+    userId: user.id,
+  });
   dispatch({ type: ADD_LIST, payload: response.data });
 };
 

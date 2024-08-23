@@ -8,22 +8,23 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/users", {
-        email,
-        password,
-      });
-      if (response.data) {
-        alert("Registration successful. Please login.");
-        navigate("/login");
-      }
-    } catch (error) {
-      console.error("Registration error:", error);
-      alert("An error occurred during registration");
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post("http://localhost:3001/users", {
+      email,
+      password,
+    });
+    if (response.data) {
+      alert("Registration successful. Please login.");
+      navigate("/login");
     }
-  };
+  } catch (error) {
+    console.error("Registration error:", error);
+    alert("An error occurred during registration");
+  }
+};
 
   return (
     <div className="form">

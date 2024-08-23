@@ -8,23 +8,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/users?email=${email}&password=${password}`
-      );
-      if (response.data.length > 0) {
-        localStorage.setItem("user", JSON.stringify(response.data[0]));
-        navigate("/shopping-list");
-      } else {
-        alert("Invalid credentials");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("An error occurred during login");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.get(
+      `http://localhost:3001/users?email=${email}&password=${password}`
+    );
+    if (response.data.length > 0) {
+      localStorage.setItem("user", JSON.stringify(response.data[0]));
+      navigate("/shopping-list");
+    } else {
+      alert("Invalid credentials");
     }
-  };
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("An error occurred during login");
+  }
+};
 
   return (
     <div className="container">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./ListManager.css"
+import "./ListManager.css";
 import {
   fetchLists,
   addList,
@@ -15,6 +15,9 @@ const ListManager = () => {
   const lists = useSelector((state) => state.shoppingList.lists);
   const activeListId = useSelector((state) => state.shoppingList.activeListId);
   const [newListName, setNewListName] = useState("");
+
+  // Retrieve user from localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     dispatch(fetchLists());
@@ -44,9 +47,12 @@ const ListManager = () => {
     <div className="container">
       <div className="list-manager-header">
         <h3>Your Lists</h3>
-        <button onClick={handleLogout} className="shadow__btn">
-          Logout
-        </button>
+        <div className="user-info">
+          <span>{user.email}</span>
+          <button onClick={handleLogout} className="shadow__btn">
+            Logout
+          </button>
+        </div>
       </div>
       {lists.length > 0 ? (
         <ul>
@@ -55,8 +61,12 @@ const ListManager = () => {
               <span onClick={() => handleSelectList(list.id)}>
                 {list.name} {list.id === activeListId && "(active)"}
               </span>
-              <button  className="shadow__btn"  onClick={() => handleDeleteList(list.id)}>Delete</button>
-              
+              <button
+                className="shadow__btn"
+                onClick={() => handleDeleteList(list.id)}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

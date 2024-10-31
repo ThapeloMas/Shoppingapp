@@ -58,9 +58,14 @@ const ListManager = () => {
         <ul>
           {lists.map((list) => (
             <li key={list.id}>
-              <span onClick={() => handleSelectList(list.id)}>
+              <span
+                className="shadow__btn"
+                onClick={() => handleSelectList(list.id)}
+              >
                 {list.name} {list.id === activeListId && "(active)"}
               </span>
+              <br></br>
+              <br></br>
               <button
                 className="shadow__btn"
                 onClick={() => handleDeleteList(list.id)}

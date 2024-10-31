@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import "./SearchBar.css"; // Make sure you import the CSS file
+import "./SearchBar.css"; 
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");

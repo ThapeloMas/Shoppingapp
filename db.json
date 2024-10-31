@@ -29,6 +29,11 @@
       "id": "4588",
       "email": "tp@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "40fb",
+      "email": "2024@gmail.com",
+      "password": "123456"
     }
   ],
   "lists": [
@@ -52,6 +57,33 @@
         }
       ],
       "userId": "2323"
+    },
+    {
+      "id": "db86",
+      "name": "mid july grocery",
+      "items": [
+        {
+          "name": "PAp",
+          "quantity": 1,
+          "notes": "10 kg",
+          "category": "starch",
+          "id": 1729673206880
+        },
+        {
+          "name": "beef stew",
+          "quantity": 1,
+          "notes": "10 kg",
+          "category": "meat",
+          "id": 1729673222505
+        }
+      ],
+      "userId": "4817"
+    },
+    {
+      "id": "b359",
+      "name": "mid july grocery",
+      "items": [],
+      "userId": "40fb"
     }
   ]
 }
